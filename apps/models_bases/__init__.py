@@ -1,7 +1,7 @@
 #-*- encoding: utf-8 -*-
 from django.db import models
 
-class Order(models.Model):
+class BaseOrder(models.Model):
 
     PROCESSING = 10  # New order, addresses and shipping/payment methods chosen
     CONFIRMING = 20  # The order is pending confirmation (user is on the confirm view if has)
@@ -31,7 +31,7 @@ class Order(models.Model):
         app_label = 'order'
 
 
-class OrderItem(models.Model):
+class BaseOrderItem(models.Model):
     
     order = models.ForeignKey(Order, related_name='items', u"Order")
     product_reference = models.CharField(max_length=255, u"Product reference")
@@ -39,9 +39,6 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, u"Product", null=True, blank=True)
     unit_price = CurrencyField(u"Unit price")
     quantity = models.IntegerField(u"Quantity")
-    
-    #line_subtotal = CurrencyField(verbose_name=_('Line subtotal'))
-    #line_total = CurrencyField(verbose_name=_('Line total'))
 
     class Meta(object):
         abstract = True
