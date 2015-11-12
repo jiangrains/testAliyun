@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from shop.models_bases import BaseOrder
-from shop.models_bases.managers import OrderManager
+from thanksbody.models_bases import BaseOrder
+from thanksbody.models_bases.managers import OrderManager
 
 
 class Order(BaseOrder):
