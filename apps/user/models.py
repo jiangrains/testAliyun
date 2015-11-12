@@ -1,5 +1,4 @@
 #-*- encoding: utf-8 -*-
-
 from django.db import models
 
 class Wechat(models.Model): 
@@ -7,7 +6,7 @@ class Wechat(models.Model):
 	openId = models.CharField(u"OpenID", max_length=256, blank=True)
 	
 	class Meta(object):
-		app_label = u"customer"
+		app_label = u"user"
 
 	def __init__(self, nick):
 		self.nick = nick
@@ -16,7 +15,7 @@ class Wechat(models.Model):
 		return self.nick
 
 		
-class Customer(models.Model): 
+class User(models.Model): 
 	name = models.CharField(u"姓名", max_length=256) 
 	phonenum = models.CharField(u"手机号码", max_length=32) 
 	#如果wechat为None，说明该用户尚未绑定微信 
@@ -24,7 +23,7 @@ class Customer(models.Model):
 	address = models.TextField(u"住址", max_length=512, blank=True)
 
 	class Meta(object):
-		app_label = u"customer"
+		app_label = u"user"
 
 	def __init__(self, name, phonenum, address=u""):
 		self.name = name
@@ -48,14 +47,5 @@ class Customer(models.Model):
 		self.name = name
 		self.phonenum = phonenum
 		self.address = address
-
-
-
-
-
-
-
-
-
 
 
