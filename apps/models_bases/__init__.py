@@ -20,11 +20,12 @@ class BaseOrder(models.Model):
         (CANCELED, _('Canceled')),
     )    
     
-    # If the customer is null, the order was created with a session
-    customer = models.ForeignKey(Customer, blank=True, null=True, verbose_name=u"顾客")
+    # If the user is null, the order was created with a session
+    user = models.ForeignKey(user, blank=True, null=True, verbose_name=u"顾客")
     status = models.IntegerField(choices=STATUS_CODES, default=PROCESSING, verbose_name=u"Status")
     created = models.DateTimeField(auto_now_add=True, verbose_name=u"Create")
     modified = models.DateTimeField(auto_now=True, verbose_name=u"Updated")
+    cart_pk = models.PositiveIntegerField(blank=True, null=True, verbose_name=u"Cart primary key")
     
     class Meta(object):
         abstract = True
